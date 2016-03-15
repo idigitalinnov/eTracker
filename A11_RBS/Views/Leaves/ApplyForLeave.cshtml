@@ -1,0 +1,69 @@
+﻿@model A11_RBS.Models.LeavesRequestViewModel
+
+@{
+    ViewBag.Title = "ApplyForLeave";
+}
+
+<h2>ApplyForLeave</h2>
+
+@using (Html.BeginForm("ApplyForLeave","Leaves",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>LeavesRequestViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LeaveType, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.LeaveType)
+                @Html.ValidationMessageFor(model => model.LeaveType)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Reason, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Reason)
+                @Html.ValidationMessageFor(model => model.Reason)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NoOfDays, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NoOfDays)
+                @Html.ValidationMessageFor(model => model.NoOfDays)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FromDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FromDate)
+                @Html.ValidationMessageFor(model => model.FromDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ToDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ToDate)
+                @Html.ValidationMessageFor(model => model.ToDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

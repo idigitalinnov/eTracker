@@ -1,0 +1,74 @@
+﻿@model IEnumerable<A11_RBS.Domain.Leaves>
+
+@{
+    ViewBag.Title = "LeaveRequests";
+}
+
+<h2 class="btn btn-primary btn-lg disabled">Pending For Approval</h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LeaveType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoOfDays)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestedDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th>
+            @Html.Label("Respond")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaveType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfDays)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestedDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FromDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsApproved)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td> 
+                <a href="/Leave/LeaveApproved?Id=@item.Id">Approved</a> | <a href="/Leave/LeaveNotApproved?Id=@item.Id">NotApproved</a>
+            </td>
+        </tr>
+    }
+
+</table>

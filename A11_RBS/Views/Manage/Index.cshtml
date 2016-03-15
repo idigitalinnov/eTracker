@@ -1,0 +1,182 @@
+﻿@model A11_RBS.Models.IndexViewModel
+@using A11_RBS.Domain
+@{
+    ViewBag.Title = "Employee Portal";
+}
+
+<h2 class="btn btn-primary btn-lg disabled">@ViewBag.Title</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#profile" data-toggle="tab" aria-expanded="true">Profile</a></li>
+    <li class=""><a href="#LeaveMan" data-toggle="tab" aria-expanded="false">Leave Management</a></li>
+    <li class=""><a href="#Attendence" data-toggle="tab" aria-expanded="false">Attendence Details</a></li>
+    <li class=""><a href="#Timesheet" data-toggle="tab" aria-expanded="false">TimeSheet</a></li>
+    <li class=""><a href="#Salary" data-toggle="tab" aria-expanded="false">Salary Details</a></li>
+    <li class=""><a href="#Documents" data-toggle="tab" aria-expanded="false">Documents</a></li>
+    <li class=""><a href="#Projects" data-toggle="tab" aria-expanded="false">Projects</a></li>
+   
+
+
+</ul>
+<style>
+    .tab-pane{
+        margin:5px;
+        padding:20px;
+        background-color:#e9e9e9;
+        border:1px solid #f2f2f2;
+        border-radius:2px;
+        min-height:350px;
+
+    }
+</style>
+<div id="myTabContent" class="tab-content">
+    <div id="profile" class="tab-pane fade active in">
+        
+        <table class="table table-hover">
+            <thead><tr><th colspan="2">Manage Your Profile and Logins</th></tr></thead>
+            <tbody>
+                    
+                <tr>
+                    <td>
+                   @Html.ActionLink("Your Profile Summary","EmployeeDetails","UserProfile")
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        [
+                        @if (Model.HasPassword)
+                        {
+                            @Html.ActionLink("Change your password", "ChangePassword")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Create", "SetPassword")
+                        }
+                        ]
+                    </td>
+                </tr>
+                <tr>
+                    <td>External Logins:</td>
+                    <td>
+                        @Model.Logins.Count [
+                        @Html.ActionLink("Manage", "ManageLogins") ]
+                    </td>
+                </tr>
+                @*
+        Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+
+        See
+        <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+        for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+
+        Uncomment the following block after you have set up two-factor authentication
+               
+        <dt>Phone Number:</dt>
+        <dd>
+            @(Model.PhoneNumber ?? "None") [
+            @if (Model.PhoneNumber != null)
+            {
+            @Html.ActionLink("Change", "AddPhoneNumber")
+            @: &nbsp;|&nbsp;
+            @Html.ActionLink("Remove", "RemovePhoneNumber")
+            }
+            else
+            {
+            @Html.ActionLink("Add", "AddPhoneNumber")
+            }
+            ]
+        </dd>*@
+                
+                <tr>
+                    <td>Two-Factor Authentication:</td>
+                    <td>
+
+                        There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                        for details on setting up this ASP.NET application to support two-factor authentication.
+
+               @*         @if (Model.TwoFactor)
+                {
+                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Enabled
+                        <input type="submit" value="Disable" class="btn btn-link" />
+                        </text>
+                    }
+                }
+                else
+                {
+                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>Disabled
+                        <input type="submit" value="Enable" class="btn btn-link" />
+                        </text>
+                    }
+                }*@
+                    
+                
+                
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <div id="LeaveMan" class="tab-pane fade">
+        <table class="table table-hover">
+            <thead><tr><th colspan="2">Manage Your Leaves</th></tr></thead>
+            <tbody>
+
+                <tr>
+                    <td>
+                        @Html.ActionLink("Apply For A Leave", "Create", "Leave")
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Check for Leave Approval", "Index", "Leave")
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Leaves History", "Index", "Leave")
+                    </td>
+                </tr>
+                <tr>
+
+
+                    <td>
+                        @Html.ActionLink("Leaves Summmay", "Index", "Leave")
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Available Holidays", "Index", "Leave")
+                    </td>
+
+                </tr></tbody></table>
+
+    </div>
+    <div id="Attendence" class="tab-pane fade">
+        Daily Attendence
+    </div>
+    <div id="Timesheet" class="tab-pane fade">
+        Monthly Timesheet 
+    </div>
+    <div id="Salary" class="tab-pane fade">
+        Your Salary Details
+    </div>
+    <div id="Documents" class="tab-pane fade">
+        Uploaded Documents 
+    </div>
+    <div id="Projects" class="tab-pane fade">
+        Projects Involved
+    </div>
+
+    
+    </div>
+
